@@ -55,13 +55,13 @@ pipeline {
         
         stage('log') {
             steps {
-                bat label: '', script: '''echo. >> E:\\was9logs\\Stage\\%appname%.txt
-echo ====================================== >> E:\\was9logs\\Stage\\%appname%.txt
-echo. >> E:\\was9logs\\Stage\\%appname%.txt
-type "C:\\Program Files (x86)\\CloudBeesJenkinsDistribution\\jobs\\dtsd\\jobs\\%appname%\\builds\\%BUILD_ID%\\log" >> E:\\was9logs\\Stage\\%appname%.txt
-echo. >> E:\\was9logs\\Stage\\%appname%.txt
-echo ====================================== >> E:\\was9logs\\Stage\\%appname%.txt
-echo. >> E:\\was9logs\\Stage\\%appname%.txt'''
+                bat label: '', script: '''echo >> E:/was9logs/Stage/%appname%.txt
+        echo ====================================== >> E:/was9logs/Stage/%appname%.txt
+        echo >> E:/was9logs/Stage/%appname%.txt
+        type "C:/Program Files (x86)/CloudBeesJenkinsDistribution/jobs/dtsd/jobs/%appname%/builds/${BUILD_ID}/log" >> E:/was9logs/Stage/%appname%.txt
+        echo >> E:/was9logs/Stage/%appname%.txt
+        echo ====================================== >> E:/was9logs/Stage/%appname%.txt
+        echo >> E:/was9logs/Stage/%appname%.txt'''
             }
         }
     }
