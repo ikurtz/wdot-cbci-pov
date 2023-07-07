@@ -22,7 +22,7 @@ pipeline {
         stage('Move Ear File') {
             steps {
                 withCredentials([usernamePassword(credentialsId: '52ce6b99-ed7f-460f-ad20-13a8c4c3adc6', passwordVariable: 'password', usernameVariable: 'username')]) {
-                    bat label: '', script: 'curl -u DOTStaging:sy5$giCdWX -X POST "https://dotnexusprodp.dot.state.wi.us/service/rest/v1/staging/move/dot-uat?name=%appname%*&version=%Stage_Version%"'
+                    bat label: '', script: 'curl -u DOTStaging:INPUT_PASSWORD -X POST "https://dotnexusprodp.dot.state.wi.us/service/rest/v1/staging/move/dot-uat?name=%appname%*&version=%Stage_Version%"'
                 }
             }
         }
