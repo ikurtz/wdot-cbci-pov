@@ -1,5 +1,5 @@
 Resources:
-  MyInstance:
+  ikurtzWinIIS:
     Type: AWS::EC2::Instance
     Properties:
       ImageId: ami-0c55b159cbfafe1f0  # Windows Server 2019 Base AMI
