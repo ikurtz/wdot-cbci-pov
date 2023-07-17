@@ -1,0 +1,28 @@
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: ami-0c55b159cbfafe1f0  # Windows Server 2019 Base AMI
+      InstanceType: t2.micro
+      UserData:
+        Fn::Base64: !Sub |
+          <powershell>
+          Install-WindowsFeature -name Web-Server -IncludeManagementTools
+          </powershell>
+      SecurityGroups:
+        - !Ref ikurtzIIS-SG
+
+  ikurtzIIS-SG:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable HTTP and RDP access
+      SecurityGroupIngress:
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: 80
+          ToPort: 80
+        - CidrIp: 0.0.0.0/0
+          IpProtocol: tcp
+          FromPort: 3389
+          ToPort: 3389
+
