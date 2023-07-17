@@ -10,9 +10,9 @@ Resources:
           Install-WindowsFeature -name Web-Server -IncludeManagementTools
           </powershell>
       SecurityGroups:
-        - !Ref ikurtzIIS-SG
+        - !Ref ikurtzIIS
 
-  ikurtzIIS-SG:
+  ikurtzIIS:
     Type: AWS::EC2::SecurityGroup
     Properties:
       GroupDescription: Enable HTTP and RDP access
