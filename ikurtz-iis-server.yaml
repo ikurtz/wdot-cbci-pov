@@ -2,7 +2,7 @@ Resources:
   ikurtzWinIIS:
     Type: AWS::EC2::Instance
     Properties:
-      ImageId: ami-0c55b159cbfafe1f0  # Windows Server 2019 Base AMI
+      ImageId: ami-0ea6a9ded5194e937  # Windows Server 2019 Base AMI
       InstanceType: t2.micro
       UserData:
         Fn::Base64: !Sub |
