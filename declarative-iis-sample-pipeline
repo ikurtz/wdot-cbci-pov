@@ -1,0 +1,48 @@
+pipeline {
+    agent any
+    
+    environment {
+        // Define the necessary environment variables
+        GIT_REPO = 'https://github.com/yourusername/yourrepository.git'
+        GIT_BRANCH = 'main'
+        WEB_APP_PATH = 'C:\\inetpub\\wwwroot\\yourwebapp'
+        IIS_APP_POOL = 'YourAppPoolName'
+    }
+    
+    stages {
+        stage('Checkout') {
+            steps {
+                // Checkout the code from GitHub
+                git branch: "${GIT_BRANCH}", url: "${GIT_REPO}"
+            }
+        }
+        
+        stage('Build and Deploy') {
+            steps {
+                // In this stage, you can perform any build steps if required
+                
+                // Deploy the code to IIS
+                bat "xcopy /S /Y .\\* ${WEB_APP_PATH}"
+            }
+        }
+        
+        stage('Configure IIS') {
+            steps {
+                // Stop the existing app pool
+                bat "iisapp /a ${IIS_APP_POOL} /t"
+                
+                // Start the app pool
+                bat "iisapp /a ${IIS_APP_POOL}"
+            }
+        }
+    }
+    
+    post {
+        always {
+            // Clean up any temporary files or resources
+            
+            // Restart IIS to apply changes
+            bat 'iisreset /noforce'
+        }
+    }
+}
